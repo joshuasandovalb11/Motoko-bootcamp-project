@@ -1,4 +1,6 @@
 {
+  "dfx": "0.24.1",
+
   "canisters": {
     "Mi_proyecto_backend": {
       "main": "src/Mi_proyecto_backend/main.mo",
