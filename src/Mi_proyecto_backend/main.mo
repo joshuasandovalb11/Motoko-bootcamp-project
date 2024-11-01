@@ -1,3 +1,5 @@
+import Principal "mo:base/Principal";
+
 actor {
   stable var name: Text = "";
 
@@ -6,7 +8,7 @@ actor {
   var user: [User] = [
     ("Jose", 45),
     ("Adrian", 56)
-    ];
+  ];
 
   public shared func setName(newName: Text): async (){
     name := newName;
@@ -18,6 +20,17 @@ actor {
 
   public shared func deleteName(): async (){
     name := "";
+  };
+
+  public shared query ({caller}) func whoAmI(): async Principal {
+    return caller;
+  };
+
+  public shared query ({caller})func getUsers(): async [User]{
+    if (Principal.isAnonymous(caller)){
+      return [];
+    };
+    return user;
   };
 
 };
